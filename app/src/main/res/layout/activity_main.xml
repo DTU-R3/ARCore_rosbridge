@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <fragment
+        android:id="@+id/ux_fragment"
+        android:name="com.google.ar.sceneform.ux.ArFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="100dp"
+        android:background="@color/background"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/rosmaster_ip_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="ROS Master IP"
+            android:text="192.168.255.28"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/rosbridge_port_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:hint="PORT"
+            android:text="9090"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rosmaster_ip_txt"/>
+
+        <Button
+            android:id="@+id/connect_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Connect"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rosmaster_ip_txt"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="25dp"
+        android:background="@color/background"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/X"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="POS X: "
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/pos_x_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text=""
+            app:layout_constraintLeft_toRightOf="@+id/X"
+            app:layout_constraintTop_toTopOf="@+id/X"/>
+
+
+        <TextView
+            android:id="@+id/Y"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="POS Y: "
+            app:layout_constraintStart_toStartOf="@+id/X"
+            app:layout_constraintTop_toBottomOf="@+id/X" />
+
+        <TextView
+            android:id="@+id/pos_y_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text=""
+            app:layout_constraintLeft_toRightOf="@+id/Y"
+            app:layout_constraintTop_toTopOf="@+id/Y"/>
+
+        <TextView
+            android:id="@+id/Z"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="POS Z: "
+            app:layout_constraintStart_toStartOf="@+id/Y"
+            app:layout_constraintTop_toBottomOf="@+id/Y" />
+
+        <TextView
+            android:id="@+id/pos_z_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text=""
+            app:layout_constraintLeft_toRightOf="@+id/Z"
+            app:layout_constraintTop_toTopOf="@+id/Z"/>
+
+        <TextView
+            android:id="@+id/ROT_X"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:text="ROT X: "
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/rot_x_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text=""
+            app:layout_constraintLeft_toRightOf="@+id/ROT_X"
+            app:layout_constraintTop_toTopOf="@+id/ROT_X"/>
+
+
+        <TextView
+            android:id="@+id/ROT_Y"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="ROT Y: "
+            app:layout_constraintStart_toStartOf="@+id/ROT_X"
+            app:layout_constraintTop_toBottomOf="@+id/ROT_X" />
+
+        <TextView
+            android:id="@+id/rot_y_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text=""
+            app:layout_constraintLeft_toRightOf="@+id/ROT_Y"
+            app:layout_constraintTop_toTopOf="@+id/ROT_Y"/>
+
+        <TextView
+            android:id="@+id/ROT_Z"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="ROT Z: "
+            app:layout_constraintStart_toStartOf="@+id/ROT_Y"
+            app:layout_constraintTop_toBottomOf="@+id/ROT_Y" />
+
+        <TextView
+            android:id="@+id/rot_z_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text=""
+            app:layout_constraintLeft_toRightOf="@+id/ROT_Z"
+            app:layout_constraintTop_toTopOf="@+id/ROT_Z"/>
+
+        <TextView
+            android:id="@+id/ROT_W"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="ROT W: "
+            app:layout_constraintStart_toStartOf="@+id/ROT_Z"
+            app:layout_constraintTop_toBottomOf="@+id/ROT_Z" />
+
+        <TextView
+            android:id="@+id/rot_w_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text=""
+            app:layout_constraintLeft_toRightOf="@+id/ROT_W"
+            app:layout_constraintTop_toTopOf="@+id/ROT_W"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
