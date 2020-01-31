@@ -118,11 +118,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         arFragment.getArSceneView().getScene().addOnUpdateListener(frameTime -> {
-            // Return if not connected to ROS
             if(!rosbridge_connected) {
                 return;
             }
-
             Frame frame = arFragment.getArSceneView().getArFrame();
             // If there is no frame, just return.
             if (frame == null) {
@@ -132,8 +130,8 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            float[] trans =  arFragment.getArSceneView().getArFrame().getCamera().getPose().getTranslation();
-            float[] quat =  arFragment.getArSceneView().getArFrame().getCamera().getPose().getRotationQuaternion();
+            float[] trans =  arFragment.getArSceneView().getArFrame().getCamera().getDisplayOrientedPose().getTranslation();
+            float[] quat =  arFragment.getArSceneView().getArFrame().getCamera().getDisplayOrientedPose().getRotationQuaternion();
 
             Topic<Pose> odom_topic = new com.jilk.ros.Topic<Pose>("/arcore/pose", Pose.class, rosclient);
             Pose pose_msg = new Pose();
@@ -144,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
             pose_msg.orientation.y = quat[1];
             pose_msg.orientation.z = quat[2];
             pose_msg.orientation.w = quat[3];
+            odom_topic.advertise();
             odom_topic.publish(pose_msg);
 
             pos_x_txt.setText(String.format ("%.2f", trans[0]));
