@@ -234,32 +234,18 @@ public class MainActivity extends AppCompatActivity {
             rot_z_txt.setText(String.format ("%.2f", cam_node.getLocalRotation().z));
             rot_w_txt.setText(String.format ("%.2f", cam_node.getLocalRotation().w));
 
-            if(rosbridge_connected) {
-                Topic<Pose> cam_world_topic = new com.jilk.ros.Topic<Pose>("/arcore/cam_world_pose", Pose.class, rosclient);
-                cam_world_topic.advertise();
-                Pose odom_world_msg = new Pose();
-                odom_world_msg.position.x = trans[0];
-                odom_world_msg.position.y = trans[1];
-                odom_world_msg.position.z = trans[2];
-                odom_world_msg.orientation.x = quat[0];
-                odom_world_msg.orientation.y = quat[1];
-                odom_world_msg.orientation.z = quat[2];
-                odom_world_msg.orientation.w = quat[3];
-                cam_world_topic.publish(odom_world_msg);
-
-                if(map_calibrated) {
-                    Topic<Pose> cam_map_topic = new com.jilk.ros.Topic<Pose>("/arcore/cam_map_pose", Pose.class, rosclient);
-                    cam_map_topic.advertise();
-                    Pose odom_map_msg = new Pose();
-                    odom_map_msg.position.x = cam_node.getLocalPosition().x;
-                    odom_map_msg.position.y = cam_node.getLocalPosition().y;
-                    odom_map_msg.position.z = cam_node.getLocalPosition().z;
-                    odom_map_msg.orientation.x = cam_node.getLocalRotation().x;
-                    odom_map_msg.orientation.y = cam_node.getLocalRotation().y;
-                    odom_map_msg.orientation.z = cam_node.getLocalRotation().z;
-                    odom_map_msg.orientation.w = cam_node.getLocalRotation().w;
-                    cam_map_topic.publish(odom_map_msg);
-                }
+            if(rosbridge_connected && map_calibrated) {
+                Topic<Pose> cam_map_topic = new com.jilk.ros.Topic<Pose>("/arcore/cam_pose", Pose.class, rosclient);
+                cam_map_topic.advertise();
+                Pose odom_map_msg = new Pose();
+                odom_map_msg.position.x = cam_node.getLocalPosition().x;
+                odom_map_msg.position.y = cam_node.getLocalPosition().y;
+                odom_map_msg.position.z = cam_node.getLocalPosition().z;
+                odom_map_msg.orientation.x = cam_node.getLocalRotation().x;
+                odom_map_msg.orientation.y = cam_node.getLocalRotation().y;
+                odom_map_msg.orientation.z = cam_node.getLocalRotation().z;
+                odom_map_msg.orientation.w = cam_node.getLocalRotation().w;
+                cam_map_topic.publish(odom_map_msg);
             }
         });
     }
